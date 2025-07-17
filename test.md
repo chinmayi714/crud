@@ -2,33 +2,36 @@
 
 ```mermaid
 flowchart TD
-    config["Configuration\ntype: message-server"]
-    msgDiscovery["Message Server Discovery"]
-    normalDiscovery["Normal Discovery"]
-    queries["Queries and get the\nsysnr and host name\nand forms the entityId"]
+    config["Configuration<br/>type: message-server"]
+    msgDiscovery["Message Server<br/>Discovery"]
+    normalDiscovery["Normal<br/>Discovery"]
+    queries["Queries and get the<br/>sysnr and host name<br/>and forms the entityId"]
     entityId["host:sysnr:client/user"]
-    sensor["Invoke Sensor\nwith entity Id\nand make direct\nconnection to SAP"]
-    directConfig["config: type: direct"]
+    sensor["Invoke Sensor<br/>with entity Id<br/>and make direct<br/>connection to SAP"]
+    directConfig["config:<br/>type: direct"]
     
     config --> msgDiscovery
     config -->|msg server| queries
-    msgDiscovery -->|forms entity\nfrom entry| normalDiscovery
+    msgDiscovery -->|forms entity<br/>from entry| normalDiscovery
     queries --> entityId
     normalDiscovery --> sensor
     entityId --> sensor
     sensor --> directConfig
     
-    classDef pink fill:#ffccff,stroke:#333,stroke-width:2px
-    classDef blue fill:#bbbbff,stroke:#333,stroke-width:2px
-    classDef green fill:#ddffdd,stroke:#333,stroke-width:2px
-    classDef yellow fill:#ffffdd,stroke:#333,stroke-width:2px
-    classDef cyan fill:#ddddff,stroke:#333,stroke-width:2px
+    %% Custom styles for better visibility
+    classDef pink fill:#ffccff,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
+    classDef blue fill:#99ccff,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
+    classDef green fill:#ccffcc,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
+    classDef yellow fill:#ffff99,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
+    classDef cyan fill:#99ffff,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
     
+    %% Assign classes
     class config,directConfig pink
     class msgDiscovery,normalDiscovery blue
     class queries green
     class entityId yellow
     class sensor cyan
+
 ```
 
 ## Diagram Explanation
