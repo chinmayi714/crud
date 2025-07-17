@@ -4,7 +4,7 @@
 
 ```mermaid
 flowchart LR
-  f1_pad_left[" "]:::hidden --> f1_config["Configuration<br>type: direct"] --> f1_discovery["Normal Discovery"] --> f1_entityForm["Forms entity<br>from the configuration"] --> f1_entityId["Entity ID<br>host:sysnr:client/user"] --> f1_sensor["Invoke Sensor<br>with entity ID and make<br>direct connection to ABAP instance"] --> f1_pad_right[" "]:::hidden
+  f1_pad_left[" "]:::hidden  f1_config["Configuration<br>type: direct"] --> f1_discovery["Normal Discovery"] --> f1_entityForm["Forms entity<br>from the configuration"] --> f1_entityId["Entity ID<br>host:sysnr:client/user"] --> f1_sensor["Invoke Sensor<br>with entity ID and make<br>direct connection to ABAP instance"]  f1_pad_right[" "]:::hidden
 
   %% Styling
   classDef pink fill:#ffccff,stroke:#000,color:#000,font-weight:bold
@@ -24,7 +24,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  f2_pad_left[" "]:::hidden --> f2_config["Configuration<br>type: message-server"] --> f2_msgDiscovery["Message Server Discovery"] --> f2_queries["Queries message server<br>and gets sysnr and target host<br>to form entity ID of each<br>application server"] --> f2_entityId["Entity ID<br>host:sysnr:client/user"] --> f2_sensor["Invoke Sensor<br>with entity ID and make<br>direct connection to each application server"] --> f2_pad_right[" "]:::hidden
+  f2_pad_left[" "]:::hidden  f2_config["Configuration<br>type: message-server"] --> f2_msgDiscovery["Message Server Discovery"] --> f2_queries["Queries message server<br>and gets sysnr and target host<br>to form entity ID of each<br>application server"] --> f2_entityId["Entity ID<br>host:sysnr:client/user"] --> f2_sensor["Invoke Sensor<br>with entity ID and make<br>direct connection to each application server"]  f2_pad_right[" "]:::hidden
 
   %% Styling
   classDef pink fill:#ffccff,stroke:#000,color:#000,font-weight:bold
