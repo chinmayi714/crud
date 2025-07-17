@@ -1,5 +1,4 @@
-# SAP Message Server Connection Flow Diagram (Mermaid)
-
+# SAP Message Server Connection Flow Diagram
 ## Flow 1: Direct Configuration
 
 ```mermaid
