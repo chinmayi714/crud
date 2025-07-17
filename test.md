@@ -2,12 +2,16 @@
 
 ```mermaid
 flowchart LR
-    subgraph Flow1["Flow 1: Direct Configuration"]
+    %% Flow 1
+    subgraph F1["Flow 1: Direct Configuration"]
+        direction TB
+        f1_space_top[" "]:::hidden
         f1_config["Configuration<br/>type: direct"]
         f1_discovery["Normal Discovery"]
         f1_entityForm["Forms entity<br/>from the configuration"]
         f1_entityId["Entity ID<br/>host:sysnr:client/user"]
         f1_sensor["Invoke Sensor<br/>with entity ID and make<br/>direct connection to ABAP instance"]
+        f1_space_bottom[" "]:::hidden
 
         f1_config --> f1_discovery
         f1_discovery --> f1_entityForm
@@ -15,12 +19,19 @@ flowchart LR
         f1_entityId --> f1_sensor
     end
 
-    subgraph Flow2["Flow 2: Message Server Configuration"]
+    %% Add space between subgraphs
+    F1 ~~~ F2
+
+    %% Flow 2
+    subgraph F2["Flow 2: Message Server Configuration"]
+        direction TB
+        f2_space_top[" "]:::hidden
         f2_config["Configuration<br/>type: message-server"]
         f2_msgDiscovery["Message Server Discovery"]
         f2_queries["Queries message server<br/>and gets sysnr and target host<br/>to form entity ID of each<br/>application server"]
         f2_entityId["Entity ID<br/>host:sysnr:client/user"]
         f2_sensor["Invoke Sensor<br/>with entity ID and make<br/>direct connection to each application server"]
+        f2_space_bottom[" "]:::hidden
 
         f2_config --> f2_msgDiscovery
         f2_msgDiscovery --> f2_queries
@@ -28,17 +39,10 @@ flowchart LR
         f2_entityId --> f2_sensor
     end
 
-    %% Custom Styles
+    %% Styles
     classDef pink fill:#ffccff,stroke:#000,color:#000,font-weight:bold;
-    classDef blue fill:#99ccff,stroke:#000,color:#000,font-weight:bold;
-    classDef green fill:#ccffcc,stroke:#000,color:#000,font-weight:bold;
-    classDef yellow fill:#ffffcc,stroke:#000,color:#000,font-weight:bold;
+    classDef blue fill:#99ccff,stroke:#000,color:
 
-    %% Assign styles
-    class f1_config,f2_config pink
-    class f1_discovery,f1_entityForm,f1_sensor,f2_msgDiscovery,f2_sensor blue
-    class f2_queries green
-    class f1_entityId,f2_entityId yellow
 
 
 ```
