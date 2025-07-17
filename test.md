@@ -46,7 +46,7 @@ This diagram illustrates the SAP Message Server connection flow compared to dire
 
 ### Flow 1: Direct Configuration
 
-1. **Configuration** (type: direct) - The initial configuration specifies a direct connection type.
+1. **Configuration** (type: direct) - The initial configuration specifies a direct connection type (optional for direct connection , default is direct) .
 2. **Normal Discovery** - The system uses normal discovery process.
 3. **Forms Entity** - Forms an entity from the configuration parameters.
 4. **Entity ID** - Creates an entity ID using the format: `host:sysnr:client/user`.
