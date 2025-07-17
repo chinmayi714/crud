@@ -1,36 +1,45 @@
 # SAP Message Server Connection Flow Diagram (Mermaid)
 
 ```mermaid
-flowchart TD
-    config["Configuration<br/>type: message-server"]
-    msgDiscovery["Message Server<br/>Discovery"]
-    normalDiscovery["Normal<br/>Discovery"]
-    queries["Queries and get the<br/>sysnr and host name<br/>and forms the entityId"]
-    entityId["host:sysnr:client/user"]
-    sensor["Invoke Sensor<br/>with entity Id<br/>and make direct<br/>connection to SAP"]
-    directConfig["config:<br/>type: direct"]
-    
-    config --> msgDiscovery
-    config -->|msg server| queries
-    msgDiscovery -->|forms entity<br/>from entry| normalDiscovery
-    queries --> entityId
-    normalDiscovery --> sensor
-    entityId --> sensor
-    sensor --> directConfig
-    
-    %% Custom styles for better visibility
-    classDef pink fill:#ffccff,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
-    classDef blue fill:#99ccff,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
-    classDef green fill:#ccffcc,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
-    classDef yellow fill:#ffff99,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
-    classDef cyan fill:#99ffff,stroke:#000000,stroke-width:2px,color:#000,font-weight:bold;
-    
-    %% Assign classes
-    class config,directConfig pink
-    class msgDiscovery,normalDiscovery blue
-    class queries green
-    class entityId yellow
-    class sensor cyan
+flowchart LR
+    subgraph Flow1["Flow 1: Direct Configuration"]
+        f1_config["Configuration<br/>type: direct"]
+        f1_discovery["Normal Discovery"]
+        f1_entityForm["Forms entity<br/>from the configuration"]
+        f1_entityId["Entity ID<br/>host:sysnr:client/user"]
+        f1_sensor["Invoke Sensor<br/>with entity ID and make<br/>direct connection to ABAP instance"]
+
+        f1_config --> f1_discovery
+        f1_discovery --> f1_entityForm
+        f1_entityForm --> f1_entityId
+        f1_entityId --> f1_sensor
+    end
+
+    subgraph Flow2["Flow 2: Message Server Configuration"]
+        f2_config["Configuration<br/>type: message-server"]
+        f2_msgDiscovery["Message Server Discovery"]
+        f2_queries["Queries message server<br/>and gets sysnr and target host<br/>to form entity ID of each<br/>application server"]
+        f2_entityId["Entity ID<br/>host:sysnr:client/user"]
+        f2_sensor["Invoke Sensor<br/>with entity ID and make<br/>direct connection to each application server"]
+
+        f2_config --> f2_msgDiscovery
+        f2_msgDiscovery --> f2_queries
+        f2_queries --> f2_entityId
+        f2_entityId --> f2_sensor
+    end
+
+    %% Custom Styles
+    classDef pink fill:#ffccff,stroke:#000,color:#000,font-weight:bold;
+    classDef blue fill:#99ccff,stroke:#000,color:#000,font-weight:bold;
+    classDef green fill:#ccffcc,stroke:#000,color:#000,font-weight:bold;
+    classDef yellow fill:#ffffcc,stroke:#000,color:#000,font-weight:bold;
+
+    %% Assign styles
+    class f1_config,f2_config pink
+    class f1_discovery,f1_entityForm,f1_sensor,f2_msgDiscovery,f2_sensor blue
+    class f2_queries green
+    class f1_entityId,f2_entityId yellow
+
 
 ```
 
